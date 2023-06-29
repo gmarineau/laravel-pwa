@@ -1,11 +1,11 @@
 <?php
 
-namespace LaravelPWA\Providers;
+namespace GMarineau\LaravelPwa;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelPWAServiceProvider extends ServiceProvider
+class LaravelPwaServiceProvider extends ServiceProvider
 {
     /**
      * Indicates if loading of the provider is deferred.
@@ -48,10 +48,12 @@ class LaravelPWAServiceProvider extends ServiceProvider
     protected function registerConfig()
     {
         $this->publishes([
-            __DIR__.'/../Config/config.php' => config_path('laravelpwa.php'),
+            __DIR__ . '/../config/config.php' => config_path('laravelpwa.php'),
         ], 'config');
+
         $this->mergeConfigFrom(
-            __DIR__.'/../Config/config.php', 'laravelpwa'
+            __DIR__ . '/../config/config.php',
+            'laravelpwa'
         );
     }
 
@@ -64,7 +66,7 @@ class LaravelPWAServiceProvider extends ServiceProvider
     {
         $viewPath = base_path('resources/views/vendor/laravelpwa');
 
-        $sourcePath = __DIR__.'/../resources/views';
+        $sourcePath = __DIR__ . '/../resources/views';
 
         $this->publishes([
             $sourcePath => $viewPath
@@ -84,7 +86,7 @@ class LaravelPWAServiceProvider extends ServiceProvider
     {
         $iconsPath = public_path('images/icons');
 
-        $sourcePath = __DIR__.'/../assets/images/icons';
+        $sourcePath = __DIR__ . '/../assets/images/icons';
 
         $this->publishes([
             $sourcePath => $iconsPath
@@ -100,7 +102,7 @@ class LaravelPWAServiceProvider extends ServiceProvider
     {
         $publicPath = public_path();
 
-        $sourcePath = __DIR__.'/../assets/js';
+        $sourcePath = __DIR__ . '/../assets/js';
 
         $this->publishes([
             $sourcePath => $publicPath
@@ -115,11 +117,10 @@ class LaravelPWAServiceProvider extends ServiceProvider
     public function registerDirective()
     {
         Blade::directive('laravelPWA', function () {
-            return (new \LaravelPWA\Services\MetaService)->render();
+            return (new \GMarineau\LaravelPwa\Services\MetaService())->render();
         });
     }
 
-    
     /**
      * Register the available commands
      *
@@ -128,9 +129,8 @@ class LaravelPWAServiceProvider extends ServiceProvider
     public function registerCommands()
     {
         $this->commands([
-            \LaravelPWA\Console\Commands\DeployManifest::class,
+            \GMarineau\LaravelPwa\Console\Commands\DeployManifest::class,
         ]);
-        
     }
 
     /**

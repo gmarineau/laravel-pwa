@@ -16,14 +16,14 @@
     ],
     "autoload": {
         "psr-4": {
-            "LaravelPWA\\": ""
+            "GMarineau\\LaravelPwa\\": "src"
         }
     },
     "minimum-stability": "stable",
     "extra": {
         "laravel": {
             "providers": [
-                "LaravelPWA\\Providers\\LaravelPWAServiceProvider"
+                "GMarineau\\LaravelPwa\\Providers\\LaravelPwaServiceProvider"
             ]
         }
     }

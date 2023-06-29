@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelPWA\Providers;
+namespace GMarineau\LaravelPwa;
 
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
@@ -34,8 +34,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map(Router $router)
     {
-        \Route::group(['middleware' => 'web', 'namespace' => $this->rootUrlNamespace], function()
-        {
+        Route::group(['middleware' => 'web', 'namespace' => $this->rootUrlNamespace], function () {
             require __DIR__ . '/../Http/routes.php';
         });
     }

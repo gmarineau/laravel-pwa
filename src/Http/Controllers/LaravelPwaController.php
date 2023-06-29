@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelPWA\Http\Controllers;
+namespace GMarineau\LaravelPwa\Http\Controllers;
 
 use Exception;
 use Illuminate\Routing\Controller;
@@ -11,11 +11,13 @@ class LaravelPWAController extends Controller
 {
     public function manifestJson()
     {
-        $output = (new ManifestService)->generate();
+        $output = (new ManifestService())->generate();
+
         return response()->json($output);
     }
 
-    public function offline(){
+    public function offline()
+    {
         return view('laravelpwa::offline');
     }
 }

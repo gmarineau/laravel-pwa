@@ -1,9 +1,8 @@
 <?php
 
-namespace LaravelPWA\Console\Commands;
+namespace GMarineau\LaravelPwa\Console\Commands;
 
 use File;
-
 use Illuminate\Console\Command;
 use LaravelPWA\Services\ManifestService;
 
@@ -40,13 +39,9 @@ class DeployManifest extends Command
      */
     public function handle()
     {
-       
-        $output = (new ManifestService)->generate();
+        $output = (new ManifestService())->generate();
         File::put(public_path("manifest.json"), json_encode($output, JSON_PRETTY_PRINT));
 
         $this->line('manifest.json file has been created.');
-
     }
-
-
 }

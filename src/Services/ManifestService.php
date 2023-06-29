@@ -1,13 +1,6 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Silvio Leite
- * Date: 22/08/2018
- * Time: 19:13
- */
 
-namespace LaravelPWA\Services;
-
+namespace GMarineau\LaravelPwa\Services;
 
 class ManifestService
 {
@@ -30,14 +23,13 @@ class ManifestService
             $basicManifest['icons'][] = [
                 'src' => $file['path'],
                 'type' => 'image/' . $fileInfo['extension'],
-                'sizes' => (isset($file['sizes']))?$file['sizes']:$size,
+                'sizes' => (isset($file['sizes'])) ? $file['sizes'] : $size,
                 'purpose' => $file['purpose']
             ];
         }
 
         if (config('laravelpwa.manifest.shortcuts')) {
             foreach (config('laravelpwa.manifest.shortcuts') as $shortcut) {
-
                 if (array_key_exists("icons", $shortcut)) {
                     $fileInfo = pathinfo($shortcut['icons']['src']);
                     $icon = [
@@ -45,7 +37,8 @@ class ManifestService
                         'type' => 'image/' . $fileInfo['extension'],
                         'purpose' => $shortcut['icons']['purpose']
                     ];
-                    if(isset($shortcut['icons']['sizes'])) {
+
+                    if (isset($shortcut['icons']['sizes'])) {
                         $icon["sizes"] = $shortcut['icons']['sizes'];
                     }
                 } else {
@@ -64,9 +57,9 @@ class ManifestService
         }
 
         foreach (config('laravelpwa.manifest.custom') as $tag => $value) {
-             $basicManifest[$tag] = $value;
+            $basicManifest[$tag] = $value;
         }
+
         return $basicManifest;
     }
-
 }
