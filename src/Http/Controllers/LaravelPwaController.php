@@ -2,21 +2,21 @@
 
 namespace GMarineau\LaravelPwa\Http\Controllers;
 
-use Exception;
 use Illuminate\Routing\Controller;
-use LaravelPWA\Services\LaucherIconService;
 use LaravelPWA\Services\ManifestService;
+use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
-class LaravelPWAController extends Controller
+class LaravelPwaController extends Controller
 {
-    public function manifestJson()
+    public function manifestJson(): JsonResponse
     {
         $output = (new ManifestService())->generate();
 
         return response()->json($output);
     }
 
-    public function offline()
+    public function offline(): View
     {
         return view('laravelpwa::offline');
     }

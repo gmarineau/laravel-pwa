@@ -20,14 +20,16 @@ class LaravelPwaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    public function boot()
+    public function boot(): void
     {
         $this->registerConfig();
         $this->registerIcons();
         $this->registerViews();
-        $this->registerServiceworker();
+        $this->registerServiceWorker();
         $this->registerDirective();
         $this->registerCommands();
+
+        $this->loadRoutesFrom(__DIR__ . '/../routes/web.php');
     }
 
     /**
@@ -37,7 +39,7 @@ class LaravelPwaServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->register(RouteServiceProvider::class);
+        //
     }
 
     /**
@@ -98,7 +100,7 @@ class LaravelPwaServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerServiceworker()
+    protected function registerServiceWorker()
     {
         $publicPath = public_path();
 

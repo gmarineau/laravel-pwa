@@ -37,7 +37,7 @@ composer require gmarineau/laravelpwa --prefer-dist
 ### Publish
 
 ```bash
-$ php artisan vendor:publish --provider="LaravelPWA\Providers\LaravelPWAServiceProvider"
+$ php artisan vendor:publish --provider="GMarineau\LaravelPwa\LaravelPwaServiceProvider"
 ```
 
 ### Configuration
