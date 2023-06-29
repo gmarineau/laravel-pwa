@@ -24,7 +24,7 @@ Add the following to your `composer.json` file :
 
 ```json
 "require": {
-    "gmarineau/laravelpwa": "~1.0.0",
+    "gmarineau/laravelpwa": "^1.0",
 },
 ```
 
